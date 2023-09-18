@@ -1,9 +1,14 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import Controller.AccauntController;
+import Domen.Employee;
+import Domen.PersonComporator;
 import Domen.Student;
 import Domen.StudentGroup;
 import Domen.StudentSteam;
+import Domen.Teacher;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -48,7 +53,7 @@ public class App {
         StudentSteam steam1 = new StudentSteam(listSteam1, 1);
         StudentSteam steam2 = new StudentSteam(listSteam2, 2);
         StudentSteam steam3 = new StudentSteam(listSteam3, 3);
-// выводим в консоль номер потока, номер группы и студентов
+        // выводим в консоль номер потока, номер группы и студентов
         System.out.println(steam1);
         for (StudentGroup steam : steam1) {
             System.out.println(steam);
@@ -79,9 +84,51 @@ public class App {
         for (Student s : group5125) {
             System.out.println(s);
         }
-         
-     
 
-  
-}
+        System.out.println("---------------------------------------------------------------------");
+        // вносим данные учителей
+        Teacher t1 = new Teacher("Галина", 55, "Docent");
+        Teacher t2 = new Teacher("Татьяна", 57, "Docent");
+
+        // сравним студентов
+        System.out.println(new PersonComporator<Student>().compare(s1, s3));
+
+        // выплатим зарплату учителю:
+        // создадим экземпляр класса
+        AccauntController controller = new AccauntController();
+        // обратимся к controller
+        controller.paySalary(t1, 50000);
+        System.out.println("------------------------------------------------");
+
+        // сравним учителей
+        System.out.println(new PersonComporator<Teacher>().compare((t1), t2));
+
+        // выведем данные учителей на консоль
+
+        List<Teacher> listTeachers = new ArrayList<Teacher>();
+
+        listTeachers.add(t1);
+        listTeachers.add(t2);
+
+        for (Teacher t : listTeachers)
+            System.out.println(t);
+        System.out.println("------------------------------------------------");
+        // создадим сотрудников
+
+        Employee em1 = new Employee("Виктор", 30, "Security guard");
+        Employee em2 = new Employee("Катерина", 42, "Director");
+        Employee em3 = new Employee("Захар", 38, "Senior Researcher");
+
+        List<Employee> listEmpl = new ArrayList<Employee>();
+
+        listEmpl.add(em1);
+        listEmpl.add(em2);
+        listEmpl.add(em3);
+        // выведем на консоль средний возраст студентов группы 5123, учителей и сотрудников
+
+        System.out.println(AccauntController.averageAge(listStud1));
+        System.out.println(AccauntController.averageAge(listTeachers));
+        System.out.println(AccauntController.averageAge(listEmpl));
+    }
+
 }

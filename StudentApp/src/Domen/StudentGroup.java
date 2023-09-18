@@ -63,24 +63,20 @@ public class StudentGroup  implements Iterable<Student>, Comparable<StudentGroup
         
     }
 
-    @Override
-    public int compareTo(StudentGroup o) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+ 
 
-    // @Override
-    // public int compareTo(StudentGroup o) {
-    //     if(this.group() > o.group)
-    //     return 1;
-    //     else if (this.group()< o.group)
-    //     return -1;
-    //     else
-    //     return 0;
+    @Override
+    public int compareTo(StudentGroup g) {
+        if(this.group.size() > g.group.size())
+        return 0;
+        else if (this.group.size()< g.group.size())
+        return -1;
+        else
+        return 0;
 
      
-    //     return 0;
-    // }
+   
+    }
 
     }
 
